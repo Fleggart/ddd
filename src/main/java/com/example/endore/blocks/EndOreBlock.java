@@ -26,8 +26,16 @@ public class EndOreBlock extends Block {
     @Override
     public void onBlockExploded(World world, BlockPos pos, Explosion explosion) {
         if (!world.isRemote) {
+            // 设置为破损矿石
             world.setBlockState(pos, ModBlocks.DAMAGED_END_ORE_BLOCK.getDefaultState());
+            // 播放爆炸效果
             world.playEvent(2001, pos, Block.getStateId(this.getDefaultState()));
         }
+    }
+
+    // 防止被爆炸破坏（但会触发上面的转换）
+    @Override
+    public void onBlockDestroyedByExplosion(World world, BlockPos pos, Explosion explosion) {
+        // 这个方法也会被调用，我们什么也不做，因为已经在 onBlockExploded 中处理了
     }
 }
