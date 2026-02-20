@@ -22,8 +22,8 @@ public class ModBlocks {
                 .setRegistryName(EndOreMod.MODID, "end_ore_block")
                 .setTranslationKey(EndOreMod.MODID + ".end_ore_block")
                 .setCreativeTab(CreativeTabs.BUILDING_BLOCKS)
-                .setHardness(-1.0F)  // 不可破坏
-                .setResistance(30.0F); // ⚠️ 重要：降低抗爆性，让爆炸能触发事件（原为3600000太高）
+                .setHardness(-1.0F)  // 玩家无法挖掘
+                .setResistance(30.0F); // 爆炸抗性（会被getExplosionResistance覆盖）
         
         DAMAGED_END_ORE_BLOCK = new DamagedEndOreBlock(Material.ROCK)
                 .setRegistryName(EndOreMod.MODID, "damaged_end_ore_block")
