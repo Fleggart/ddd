@@ -18,21 +18,20 @@ public class ModBlocks {
 
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
-        // 注册普通末地矿石 - 不可挖掘
+        // 注册普通末地矿石
         END_ORE_BLOCK = new EndOreBlock(Material.ROCK)
                 .setRegistryName(EndOreMod.MODID, "end_ore_block")
                 .setTranslationKey(EndOreMod.MODID + ".end_ore_block")
                 .setCreativeTab(CreativeTabs.BUILDING_BLOCKS)
-                .setHardness(-1.0F) // 负数表示不可破坏
-                .setResistance(3600000.0F); // 极高的抗爆性
+                .setHardness(3.0F)
+                .setResistance(15.0F);
         
-        // 不需要设置挖掘等级，因为不可挖掘
+        END_ORE_BLOCK.setHarvestLevel("pickaxe", 2);
 
-        // 注册破损末地矿石 - 可挖掘，掉落自身
+        // 注册破损末地矿石
         DAMAGED_END_ORE_BLOCK = new DamagedEndOreBlock(Material.ROCK)
                 .setRegistryName(EndOreMod.MODID, "damaged_end_ore_block")
                 .setTranslationKey(EndOreMod.MODID + ".damaged_end_ore_block")
-                .setCreativeTab(CreativeTabs.BUILDING_BLOCKS)
                 .setHardness(1.5F)
                 .setResistance(5.0F);
         
