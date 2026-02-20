@@ -23,7 +23,7 @@ public class DamagedEndOreBlock extends Block {
         return Item.getItemFromBlock(this);
     }
 
-    // 爆炸时掉落自身
+    // 爆炸时掉落自身（唯一爆炸处理点）
     @Override
     public void onBlockExploded(World world, BlockPos pos, Explosion explosion) {
         if (!world.isRemote) {
