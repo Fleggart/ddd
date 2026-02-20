@@ -27,8 +27,16 @@ public class DamagedEndOreBlock extends Block {
     @Override
     public void onBlockExploded(World world, BlockPos pos, Explosion explosion) {
         if (!world.isRemote) {
+            // 掉落自身物品
             spawnAsEntity(world, pos, new ItemStack(this));
         }
-        super.onBlockExploded(world, pos, explosion);
+        // 移除方块
+        world.setBlockToAir(pos);
+    }
+
+    // 阻止默认的爆炸破坏行为（我们已经自定义了）
+    @Override
+    public void onBlockDestroyedByExplosion(World world, BlockPos pos, Explosion explosion) {
+        // 什么也不做，因为已经在 onBlockExploded 中处理了
     }
 }
