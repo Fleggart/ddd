@@ -1,5 +1,6 @@
 package com.example.endore.blocks;
 
+import com.example.endore.registration.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -8,6 +9,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.Explosion;
 
 import java.util.Random;
 
@@ -48,5 +50,30 @@ public class EndOreBlock extends Block {
             world.playEvent(2001, pos, Block.getStateId(state));
         }
         return super.removedByPlayer(state, world, pos, player, willHarvest);
+    }
+
+    @Override
+    public void onBlockExploded(World world, BlockPos pos, IBlockState state) {
+        if (!world.isRemote) {
+            // 爆炸时50%几率转化为破损矿石
+            if (world.rand.nextBoolean()) {
+                world.setBlockState(pos, ModBlocks.DAMAGED_END_ORE_BLOCK.getDefaultState());
+                world.playEvent(2001, pos, Block.getStateId(state));
+            } else {
+                this.dropBlockAsItem(world, pos, state, 0);
+                super.onBlockExploded(world, pos, state);
+            }
+        } else {
+            super.onBlockExploded(world, pos, state);
+        }
+    }
+
+    @Override
+    public void onBlockDestroyedByExplosion(World world, BlockPos pos, Explosion explosionIn) {
+        if (!world.isRemote) {
+            if (world.rand.nextInt(100) < 30) {
+                world.setBlockState(pos, ModBlocks.DAMAGED_END_ORE_BLOCK.getDefaultState());
+            }
+        }
     }
 }
