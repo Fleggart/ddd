@@ -18,7 +18,7 @@ public class ModBlocks {
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
         END_ORE_BLOCK = new EndOreBlock(Material.ROCK)
                 .setRegistryName(EndOreMod.MODID, "end_ore_block")
-                .setUnlocalizedName(EndOreMod.MODID + ".end_ore_block")
+                .setTranslationKey(EndOreMod.MODID + ".end_ore_block")  // 1.12.2 使用 setTranslationKey 而不是 setUnlocalizedName
                 .setCreativeTab(CreativeTabs.BUILDING_BLOCKS)
                 .setHardness(3.0F)
                 .setResistance(15.0F)
