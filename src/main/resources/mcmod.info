@@ -1,12 +1,14 @@
-[{
-	"modid": "${mod_id}",
-	"name": "${mod_name}",
-	"version": "${mod_version}",
-	"mcversion": "1.12.2",
-	"description": "${mod_description}",
-	"authorList": ["${mod_authors}"],
-	"credits": "${mod_credits}",
-	"url": "${mod_url}",
-	"updateJSON": "${mod_update_json}",
-	"logoFile": "${mod_logo_path}"
-}]
+[
+  {
+    "modid": "endore",
+    "name": "End Ore Mod",
+    "description": "Adds a new ore that generates in The End and drops Ender Pearls",
+    "version": "1.0.0",
+    "mcversion": "1.12.2",
+    "authorList": ["YourName"],
+    "credits": "",
+    "logoFile": "",
+    "screenshots": [],
+    "dependencies": []
+  }
+]
