@@ -14,6 +14,7 @@ public class EndOreBlock extends Block {
 
     public EndOreBlock(Material material) {
         super(material);
+        // 注意：抗爆性将在注册时设置，这里不重复设置
     }
 
     // 玩家无法挖掘
@@ -22,10 +23,13 @@ public class EndOreBlock extends Block {
         return false;
     }
 
-    // 爆炸时100%转化为破损矿石（唯一爆炸处理点）
+    // 爆炸时100%转化为破损矿石
     @Override
     public void onBlockExploded(World world, BlockPos pos, Explosion explosion) {
         if (!world.isRemote) {
+            // 添加调试输出（可以在控制台看到）
+            System.out.println("[EndOre] 爆炸触发于 " + pos.toString());
+            
             // 设置为破损矿石
             world.setBlockState(pos, ModBlocks.DAMAGED_END_ORE_BLOCK.getDefaultState());
             // 播放爆炸效果
