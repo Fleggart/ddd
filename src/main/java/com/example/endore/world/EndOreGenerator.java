@@ -1,7 +1,6 @@
 package com.example.endore.world;
 
 import com.example.endore.registration.ModBlocks;
-import net.minecraft.block.Block;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
