@@ -42,12 +42,12 @@ public class DamagedEndOreBlock extends Block {
         return 2;
     }
 
-    // 修复：破损矿石被爆炸破坏时，100%掉落物品
+    // 破损矿石被爆炸破坏时，100%掉落物品
     @Override
     public void onBlockExploded(World world, BlockPos pos, Explosion explosion) {
         // 先掉落物品
         this.dropBlockAsItem(world, pos, this.getDefaultState(), 0);
-        // 然后调用父方法移除方块
+        // 然后正常移除方块
         super.onBlockExploded(world, pos, explosion);
     }
 }
