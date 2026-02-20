@@ -1,7 +1,8 @@
 package com.example.endore.world;
 
+import com.example.endore.EndOreMod;
 import com.example.endore.registration.ModBlocks;
-import net.minecraft.block.Block;
+import net.minecraft.block.state.pattern.BlockMatcher;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -19,31 +20,39 @@ public class EndOreGenerator implements IWorldGenerator {
                          IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
         // 只在末地生成（维度ID = 1）
         if (world.provider.getDimension() == 1) {
+            EndOreMod.logger.info("正在处理末地区块: [" + chunkX + ", " + chunkZ + "]");
             generateEndOre(world, random, chunkX, chunkZ);
         }
     }
 
     private void generateEndOre(World world, Random random, int chunkX, int chunkZ) {
-        // 正确的WorldGenMinable构造函数：需要指定替换的目标方块（末地石）
         WorldGenMinable endOreGenerator = new WorldGenMinable(
-            ModBlocks.END_ORE_BLOCK.getDefaultState(),  // 要生成的方块
-            5,                                          // 矿脉大小
-            Blocks.END_STONE.getDefaultState()          // 要替换的方块（末地石）
+            ModBlocks.END_ORE_BLOCK.getDefaultState(),
+            5,
+            BlockMatcher.forBlock(Blocks.END_STONE)
         );
         
-        // 每个区块生成3-5次
+        int successCount = 0;
         int veinsPerChunk = 3 + random.nextInt(3);
         
         for (int i = 0; i < veinsPerChunk; i++) {
-            // 计算生成坐标（注意：要使用实际的区块坐标）
             int x = chunkX * 16 + random.nextInt(16);
-            int y = 30 + random.nextInt(50);  // 生成高度 30-80
+            int y = 30 + random.nextInt(50);
             int z = chunkZ * 16 + random.nextInt(16);
             
             BlockPos pos = new BlockPos(x, y, z);
             
-            // 在指定位置生成矿脉
-            endOreGenerator.generate(world, random, pos);
+            // 检查位置是否在末地石中
+            if (world.getBlockState(pos).getBlock() == Blocks.END_STONE) {
+                boolean generated = endOreGenerator.generate(world, random, pos);
+                if (generated) {
+                    successCount++;
+                }
+            }
+        }
+        
+        if (successCount > 0) {
+            EndOreMod.logger.info("区块 [" + chunkX + ", " + chunkZ + "] 成功生成了 " + successCount + " 处末地矿石");
         }
     }
 }
