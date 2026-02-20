@@ -36,11 +36,6 @@ public class DamagedEndOreBlock extends Block {
         return 1;
     }
 
-    @Override
-    public int getExpDrop(IBlockState state, net.minecraft.world.IBlockAccess world, BlockPos pos, int fortune) {
-        return 2;
-    }
-
     // 修复：破损矿石被爆炸破坏时，100%掉落物品
     @Override
     public void onBlockExploded(World world, BlockPos pos, Explosion explosion) {
