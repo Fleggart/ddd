@@ -12,9 +12,15 @@ public class ModItems {
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
-        // 注册方块的物品形式
-        ItemBlock itemBlock = new ItemBlock(ModBlocks.END_ORE_BLOCK);
-        itemBlock.setRegistryName(ModBlocks.END_ORE_BLOCK.getRegistryName());
-        event.getRegistry().register(itemBlock);
+        ItemBlock endOreItemBlock = new ItemBlock(ModBlocks.END_ORE_BLOCK);
+        endOreItemBlock.setRegistryName(ModBlocks.END_ORE_BLOCK.getRegistryName());
+        
+        ItemBlock damagedEndOreItemBlock = new ItemBlock(ModBlocks.DAMAGED_END_ORE_BLOCK);
+        damagedEndOreItemBlock.setRegistryName(ModBlocks.DAMAGED_END_ORE_BLOCK.getRegistryName());
+
+        event.getRegistry().registerAll(
+            endOreItemBlock,
+            damagedEndOreItemBlock
+        );
     }
 }
