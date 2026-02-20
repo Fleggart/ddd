@@ -7,6 +7,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.Explosion;
 
 import java.util.Random;
 
@@ -41,9 +42,12 @@ public class DamagedEndOreBlock extends Block {
         return 2;
     }
 
+    // 修复：破损矿石被爆炸破坏时，100%掉落物品
     @Override
-    public void onBlockExploded(World world, BlockPos pos, IBlockState state) {
-        this.dropBlockAsItem(world, pos, state, 0);
-        super.onBlockExploded(world, pos, state);
+    public void onBlockExploded(World world, BlockPos pos, Explosion explosion) {
+        // 先掉落物品
+        this.dropBlockAsItem(world, pos, this.getDefaultState(), 0);
+        // 然后调用父方法移除方块
+        super.onBlockExploded(world, pos, explosion);
     }
 }
