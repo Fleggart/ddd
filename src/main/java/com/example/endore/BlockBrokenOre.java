@@ -8,8 +8,8 @@ public class BlockBrokenOre extends Block {
     public BlockBrokenOre() {
         super(Material.ROCK);
 
+        this.setRegistryName("broken_ore");
         this.setTranslationKey("broken_ore");
-        this.setUnlocalizedName("broken_ore");
 
         this.setHardness(ConfigHandler.oreHardness);
         this.setHarvestLevel("pickaxe", ConfigHandler.harvestLevel);
