@@ -14,7 +14,6 @@ public class EndOreBlock extends Block {
 
     public EndOreBlock(Material material) {
         super(material);
-        // 注意：抗爆性将在注册时设置，这里不重复设置
     }
 
     // 玩家无法挖掘
@@ -23,18 +22,33 @@ public class EndOreBlock extends Block {
         return false;
     }
 
-    // 爆炸时100%转化为破损矿石
+    // 【关键方法1】爆炸抗性 - 返回正值让爆炸能处理这个方块
+    @Override
+    public float getExplosionResistance(World world, BlockPos pos, Entity exploder, Explosion explosion) {
+        // 返回一个普通值，让爆炸系统认为这个方块可以被破坏
+        return 30.0F;
+    }
+
+    // 【关键方法2】爆炸时100%转化为破损矿石
     @Override
     public void onBlockExploded(World world, BlockPos pos, Explosion explosion) {
         if (!world.isRemote) {
-            // 添加调试输出（可以在控制台看到）
-            System.out.println("[EndOre] 爆炸触发于 " + pos.toString());
+            // 添加调试输出（在控制台查看）
+            System.out.println("[EndOre] 爆炸触发！位置: " + pos.toString());
             
             // 设置为破损矿石
             world.setBlockState(pos, ModBlocks.DAMAGED_END_ORE_BLOCK.getDefaultState());
-            // 播放爆炸效果
+            
+            // 播放爆炸粒子效果
             world.playEvent(2001, pos, Block.getStateId(this.getDefaultState()));
         }
-        // 注意：不调用 super.onBlockExploded，防止方块被移除
+        // 【重要】不调用 super.onBlockExploded，防止方块被移除
+    }
+
+    // 【关键方法3】确保方块被爆炸标记为可破坏
+    @Override
+    public boolean canDropFromExplosion(Explosion explosion) {
+        // 返回true让爆炸系统认为这个方块可以被处理
+        return true;
     }
 }
