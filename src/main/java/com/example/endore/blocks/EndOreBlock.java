@@ -52,33 +52,18 @@ public class EndOreBlock extends Block {
         return super.removedByPlayer(state, world, pos, player, willHarvest);
     }
 
-    // 修复：正确的爆炸处理方法 - 方块被爆炸破坏时调用
-    @Override
-    public void onBlockDestroyedByExplosion(World world, BlockPos pos, Explosion explosionIn) {
-        if (!world.isRemote) {
-            // 爆炸后有50%几率转化为破损矿石
-            if (world.rand.nextBoolean()) {
-                world.setBlockState(pos, ModBlocks.DAMAGED_END_ORE_BLOCK.getDefaultState());
-            } else {
-                // 另外50%几率掉落物品
-                this.dropBlockAsItem(world, pos, this.getDefaultState(), 0);
-            }
-        }
-    }
-
-    // 修复：正确的爆炸处理方法 - 当爆炸发生时调用（1.12.2中的正确方法）
+    // 唯一且正确的爆炸处理方法
     @Override
     public void onBlockExploded(World world, BlockPos pos, Explosion explosion) {
-        // 先处理转化逻辑
         if (!world.isRemote) {
+            // 50%几率转化为破损矿石
             if (world.rand.nextBoolean()) {
                 world.setBlockState(pos, ModBlocks.DAMAGED_END_ORE_BLOCK.getDefaultState());
-                // 不调用父方法，因为我们保留了方块
                 world.playEvent(2001, pos, Block.getStateId(this.getDefaultState()));
-                return;
+                return; // 直接返回，不调用父方法，保留方块
             }
         }
-        // 否则正常爆炸破坏
+        // 另外50%几率正常爆炸破坏并掉落物品
         super.onBlockExploded(world, pos, explosion);
     }
 }
