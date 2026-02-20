@@ -5,13 +5,9 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.Explosion;
-
-import java.util.Random;
 
 public class EndOreBlock extends Block {
 
@@ -19,51 +15,18 @@ public class EndOreBlock extends Block {
         super(material);
     }
 
+    // 玩家无法挖掘
     @Override
-    public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-        return Items.ENDER_PEARL;
+    public boolean canHarvestBlock(IBlockAccess world, BlockPos pos, EntityPlayer player) {
+        return false;
     }
 
-    @Override
-    public int quantityDroppedWithBonus(int fortune, Random random) {
-        if (fortune > 0) {
-            int i = random.nextInt(fortune + 2) - 1;
-            if (i < 0) i = 0;
-            return this.quantityDropped(random) * (i + 1);
-        }
-        return this.quantityDropped(random);
-    }
-
-    @Override
-    public int quantityDropped(Random random) {
-        return 1;
-    }
-
-    @Override
-    public int getExpDrop(IBlockState state, net.minecraft.world.IBlockAccess world, BlockPos pos, int fortune) {
-        return 5;
-    }
-
-    @Override
-    public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, EntityPlayer player, boolean willHarvest) {
-        if (!world.isRemote && willHarvest) {
-            world.playEvent(2001, pos, Block.getStateId(state));
-        }
-        return super.removedByPlayer(state, world, pos, player, willHarvest);
-    }
-
-    // 唯一且正确的爆炸处理方法
+    // 爆炸时100%转化为破损矿石
     @Override
     public void onBlockExploded(World world, BlockPos pos, Explosion explosion) {
         if (!world.isRemote) {
-            // 50%几率转化为破损矿石
-            if (world.rand.nextBoolean()) {
-                world.setBlockState(pos, ModBlocks.DAMAGED_END_ORE_BLOCK.getDefaultState());
-                world.playEvent(2001, pos, Block.getStateId(this.getDefaultState()));
-                return; // 直接返回，不调用父方法，保留方块
-            }
+            world.setBlockState(pos, ModBlocks.DAMAGED_END_ORE_BLOCK.getDefaultState());
+            world.playEvent(2001, pos, Block.getStateId(this.getDefaultState()));
         }
-        // 另外50%几率正常爆炸破坏并掉落物品
-        super.onBlockExploded(world, pos, explosion);
     }
 }
