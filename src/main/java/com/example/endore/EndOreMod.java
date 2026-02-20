@@ -1,5 +1,6 @@
 package com.example.endore;
 
+import com.example.endore.world.EndOreGenerator;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
