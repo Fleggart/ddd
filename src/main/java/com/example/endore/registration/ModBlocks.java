@@ -16,14 +16,18 @@ public class ModBlocks {
 
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
+        // 创建方块实例
         END_ORE_BLOCK = new EndOreBlock(Material.ROCK)
                 .setRegistryName(EndOreMod.MODID, "end_ore_block")
-                .setTranslationKey(EndOreMod.MODID + ".end_ore_block")  // 1.12.2 使用 setTranslationKey 而不是 setUnlocalizedName
+                .setTranslationKey(EndOreMod.MODID + ".end_ore_block")
                 .setCreativeTab(CreativeTabs.BUILDING_BLOCKS)
                 .setHardness(3.0F)
-                .setResistance(15.0F)
-                .setHarvestLevel("pickaxe", 2);
+                .setResistance(15.0F);
+        
+        // 单独设置挖掘等级（不能链式调用，因为返回void）
+        END_ORE_BLOCK.setHarvestLevel("pickaxe", 2);
 
+        // 注册方块
         event.getRegistry().register(END_ORE_BLOCK);
     }
 }
