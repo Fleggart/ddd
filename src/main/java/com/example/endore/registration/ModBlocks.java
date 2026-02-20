@@ -18,29 +18,22 @@ public class ModBlocks {
 
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
-        // 注册普通末地矿石
         END_ORE_BLOCK = new EndOreBlock(Material.ROCK)
                 .setRegistryName(EndOreMod.MODID, "end_ore_block")
                 .setTranslationKey(EndOreMod.MODID + ".end_ore_block")
                 .setCreativeTab(CreativeTabs.BUILDING_BLOCKS)
-                .setHardness(3.0F)
-                .setResistance(15.0F);
+                .setHardness(-1.0F)
+                .setResistance(3600000.0F);
         
-        END_ORE_BLOCK.setHarvestLevel("pickaxe", 2);
-
-        // 注册破损末地矿石
         DAMAGED_END_ORE_BLOCK = new DamagedEndOreBlock(Material.ROCK)
                 .setRegistryName(EndOreMod.MODID, "damaged_end_ore_block")
                 .setTranslationKey(EndOreMod.MODID + ".damaged_end_ore_block")
+                .setCreativeTab(CreativeTabs.BUILDING_BLOCKS)
                 .setHardness(1.5F)
                 .setResistance(5.0F);
         
         DAMAGED_END_ORE_BLOCK.setHarvestLevel("pickaxe", 1);
 
-        // 注册所有方块
-        event.getRegistry().registerAll(
-            END_ORE_BLOCK,
-            DAMAGED_END_ORE_BLOCK
-        );
+        event.getRegistry().registerAll(END_ORE_BLOCK, DAMAGED_END_ORE_BLOCK);
     }
 }
