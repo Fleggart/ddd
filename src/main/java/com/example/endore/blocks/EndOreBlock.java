@@ -33,9 +33,9 @@ public class EndOreBlock extends Block {
         }
     }
 
-    // 防止被爆炸破坏（但会触发上面的转换）
+    // 设置极高的抗爆性，确保爆炸不会破坏方块（但会触发上面的转换）
     @Override
-    public void onBlockDestroyedByExplosion(World world, BlockPos pos, Explosion explosion) {
-        // 这个方法也会被调用，我们什么也不做，因为已经在 onBlockExploded 中处理了
+    public float getExplosionResistance(World world, BlockPos pos, Entity exploder, Explosion explosion) {
+        return 3600000.0F; // 极高的抗爆性
     }
 }
