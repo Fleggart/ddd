@@ -8,10 +8,10 @@ public class BlockBrokenOre extends Block {
     public BlockBrokenOre() {
         super(Material.ROCK);
 
-        setRegistryName("broken_ore");
-        setUnlocalizedName("broken_ore");
+        this.setRegistryName("broken_ore");
+        this.setUnlocalizedName("broken_ore");
 
-        setHardness(ConfigHandler.oreHardness);
-        setHarvestLevel("pickaxe", ConfigHandler.harvestLevel);
+        this.setHardness(ConfigHandler.oreHardness);
+        this.setHarvestLevel("pickaxe", ConfigHandler.harvestLevel);
     }
 }
