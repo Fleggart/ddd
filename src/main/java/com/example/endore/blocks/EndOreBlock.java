@@ -4,6 +4,7 @@ import com.example.endore.registration.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -33,9 +34,9 @@ public class EndOreBlock extends Block {
         }
     }
 
-    // 设置极高的抗爆性，确保爆炸不会破坏方块（但会触发上面的转换）
+    // 设置极高的抗爆性
     @Override
     public float getExplosionResistance(World world, BlockPos pos, Entity exploder, Explosion explosion) {
-        return 3600000.0F; // 极高的抗爆性
+        return 3600000.0F;
     }
 }
