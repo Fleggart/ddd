@@ -1,5 +1,6 @@
 package com.example.endore.blocks;
 
+import com.example.endore.registration.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -19,22 +20,20 @@ public class DamagedEndOreBlock extends Block {
 
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-        return Items.ENDER_PEARL;
+        // 返回方块本身的物品
+        return Item.getItemFromBlock(ModBlocks.DAMAGED_END_ORE_BLOCK);
     }
 
     @Override
     public int quantityDroppedWithBonus(int fortune, Random random) {
-        if (fortune > 0) {
-            int i = random.nextInt(fortune + 2) - 1;
-            if (i < 0) i = 0;
-            return this.quantityDropped(random) * (i + 1);
-        }
-        return this.quantityDropped(random);
+        // 不受时运影响，总是掉落1个
+        return 1;
     }
 
     @Override
     public int quantityDropped(Random random) {
-        return random.nextBoolean() ? 1 : 0;
+        // 总是掉落1个
+        return 1;
     }
 
     @Override
