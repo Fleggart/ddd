@@ -4,7 +4,6 @@ import com.example.endore.registration.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -23,7 +22,7 @@ public class EndOreBlock extends Block {
         return false;
     }
 
-    // 爆炸时100%转化为破损矿石
+    // 爆炸时100%转化为破损矿石（唯一爆炸处理点）
     @Override
     public void onBlockExploded(World world, BlockPos pos, Explosion explosion) {
         if (!world.isRemote) {
@@ -32,11 +31,6 @@ public class EndOreBlock extends Block {
             // 播放爆炸效果
             world.playEvent(2001, pos, Block.getStateId(this.getDefaultState()));
         }
-    }
-
-    // 设置极高的抗爆性
-    @Override
-    public float getExplosionResistance(World world, BlockPos pos, Entity exploder, Explosion explosion) {
-        return 3600000.0F;
+        // 注意：不调用 super.onBlockExploded，防止方块被移除
     }
 }
