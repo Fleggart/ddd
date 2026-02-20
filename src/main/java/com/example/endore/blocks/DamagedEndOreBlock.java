@@ -9,6 +9,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.Explosion;
 
+import java.util.Random;
+
 public class DamagedEndOreBlock extends Block {
 
     public DamagedEndOreBlock(Material material) {
