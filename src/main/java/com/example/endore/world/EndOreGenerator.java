@@ -1,7 +1,7 @@
 package com.example.endore.world;
 
 import com.example.endore.registration.ModBlocks;
-import net.minecraft.block.Block;
+import net.minecraft.block.state.pattern.BlockMatcher;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -24,18 +24,18 @@ public class EndOreGenerator implements IWorldGenerator {
     }
 
     private void generateEndOre(World world, Random random, int chunkX, int chunkZ) {
-        // 正确的WorldGenMinable构造函数：需要指定替换的目标方块（末地石）
+        // 正确的WorldGenMinable构造函数：使用BlockMatcher.forBlock()来指定替换的方块
         WorldGenMinable endOreGenerator = new WorldGenMinable(
             ModBlocks.END_ORE_BLOCK.getDefaultState(),  // 要生成的方块
             5,                                          // 矿脉大小
-            Blocks.END_STONE.getDefaultState()          // 要替换的方块（末地石）
+            BlockMatcher.forBlock(Blocks.END_STONE)     // 要替换的方块（使用BlockMatcher）
         );
         
         // 每个区块生成3-5次
         int veinsPerChunk = 3 + random.nextInt(3);
         
         for (int i = 0; i < veinsPerChunk; i++) {
-            // 计算生成坐标（注意：要使用实际的区块坐标）
+            // 计算生成坐标
             int x = chunkX * 16 + random.nextInt(16);
             int y = 30 + random.nextInt(50);  // 生成高度 30-80
             int z = chunkZ * 16 + random.nextInt(16);
