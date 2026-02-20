@@ -33,10 +33,4 @@ public class DamagedEndOreBlock extends Block {
         // 移除方块
         world.setBlockToAir(pos);
     }
-
-    // 阻止默认的爆炸破坏行为（我们已经自定义了）
-    @Override
-    public void onBlockDestroyedByExplosion(World world, BlockPos pos, Explosion explosion) {
-        // 什么也不做，因为已经在 onBlockExploded 中处理了
-    }
 }
