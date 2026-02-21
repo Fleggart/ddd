@@ -26,6 +26,13 @@ public class ModelRegistration {
         registerItemModel(ModItems.END_ORE_CHESTPLATE, 0);
         registerItemModel(ModItems.END_ORE_LEGGINGS, 0);
         registerItemModel(ModItems.END_ORE_BOOTS, 0);
+        
+        // 注册工具模型
+        registerItemModel(ModItems.END_ORE_SWORD, 0);
+        registerItemModel(ModItems.END_ORE_PICKAXE, 0);
+        registerItemModel(ModItems.END_ORE_AXE, 0);
+        registerItemModel(ModItems.END_ORE_SHOVEL, 0);
+        registerItemModel(ModItems.END_ORE_HOE, 0);
     }
     
     private static void registerItemModel(Item item, int meta) {
