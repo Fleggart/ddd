@@ -210,14 +210,6 @@ shadowJar {
     archiveClassifier = "shadow"
 }
 
-remapJar {
-    doFirst {
-        logging.captureStandardOutput LogLevel.INFO
-    }
-    doLast {
-        logging.captureStandardOutput LogLevel.QUIET
-    }
-}
 
 compileTestJava {
     sourceCompatibility = targetCompatibility = JavaVersion.VERSION_21
