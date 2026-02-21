@@ -16,5 +16,6 @@ public class EndOreArmorMaterial {
         SoundEvents.ITEM_ARMOR_EQUIP_IRON,   // 装备音效
         4.5F                                 // 盔甲韧性
     );
-
+    
+    
 }
