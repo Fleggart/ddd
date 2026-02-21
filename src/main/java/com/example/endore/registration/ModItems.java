@@ -1,7 +1,8 @@
 package com.example.endore.registration;
 
 import com.example.endore.EndOreMod;
-import com.example.endore.items.armor.*;
+import com.example.endore.items.armor.ItemEndOreArmor;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.event.RegistryEvent;
@@ -30,11 +31,11 @@ public class ModItems {
         DAMAGED_END_ORE_ITEM_BLOCK = new ItemBlock(ModBlocks.DAMAGED_END_ORE_BLOCK)
                 .setRegistryName(ModBlocks.DAMAGED_END_ORE_BLOCK.getRegistryName());
 
-        // 创建盔甲物品
-        END_ORE_HELMET = new ItemEndOreHelmet();
-        END_ORE_CHESTPLATE = new ItemEndOreChestplate();
-        END_ORE_LEGGINGS = new ItemEndOreLeggings();
-        END_ORE_BOOTS = new ItemEndOreBoots();
+        // 创建盔甲物品 - 使用合并后的类
+        END_ORE_HELMET = new ItemEndOreArmor(EntityEquipmentSlot.HEAD);
+        END_ORE_CHESTPLATE = new ItemEndOreArmor(EntityEquipmentSlot.CHEST);
+        END_ORE_LEGGINGS = new ItemEndOreArmor(EntityEquipmentSlot.LEGS);
+        END_ORE_BOOTS = new ItemEndOreArmor(EntityEquipmentSlot.FEET);
 
         // 注册所有物品
         event.getRegistry().registerAll(
