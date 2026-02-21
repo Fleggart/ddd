@@ -14,7 +14,6 @@ public class ItemEndOreBoots extends ItemArmor {
         this.setTranslationKey(EndOreMod.MODID + ".end_ore_boots");
         this.setCreativeTab(CreativeTabs.COMBAT);
         
-        // 设置击退抗性
-        this.setKnockbackResistance(0.4F);
+        
     }
 }
