@@ -14,7 +14,7 @@ public class ItemEndOreHelmet extends ItemArmor {
         this.setTranslationKey(EndOreMod.MODID + ".end_ore_helmet");
         this.setCreativeTab(CreativeTabs.COMBAT);
         
-        // 设置击退抗性
-        this.setKnockbackResistance(0.4F);
+        // 在 1.12.2 中，击退抗性需要通过属性修饰符在装备时动态添加
+        // 或者通过其他方式实现，这里暂时移除 setKnockbackResistance
     }
 }
