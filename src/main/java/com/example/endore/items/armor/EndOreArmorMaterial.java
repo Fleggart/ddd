@@ -16,9 +16,5 @@ public class EndOreArmorMaterial {
         SoundEvents.ITEM_ARMOR_EQUIP_IRON,   // 装备音效
         4.5F                                 // 盔甲韧性
     );
-    
-    static {
-        // 设置击退抗性
-        END_ORE.setKnockbackResistance(0.4F);
-    }
+
 }
