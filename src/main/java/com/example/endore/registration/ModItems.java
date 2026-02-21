@@ -1,4 +1,4 @@
-package com.example.endore.registration;
+package com.example.endore.registration; 
 
 import com.example.endore.EndOreMod;
 import com.example.endore.items.armor.ItemEndOreArmor;
