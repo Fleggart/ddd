@@ -215,17 +215,5 @@ compileTestJava {
     sourceCompatibility = targetCompatibility = JavaVersion.VERSION_21
 }
 
-test {
-    useJUnitPlatform()
-    javaLauncher.set(javaToolchains.launcherFor {
-        languageVersion = JavaLanguageVersion.of(21)
-    })
-    if (propertyBool('show_testing_output')) {
-        testLogging {
-            showStandardStreams = true
-        }
-    }
-}
-
 apply from: 'gradle/scripts/publishing.gradle'
 apply from: 'gradle/scripts/extra.gradle'
