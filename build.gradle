@@ -10,7 +10,6 @@ plugins {
 // Early Assertions
 assertProperty 'mod_version'
 assertProperty 'root_package'
-assertProperty 'mod_id'
 assertProperty 'mod_name'
 
 assertSubProperties 'use_access_transformer', 'access_transformer_locations'
