@@ -8,9 +8,7 @@ plugins {
 }
 
 // Early Assertions
-setDefaultProperty 'generate_javadocs_jar', true, false
-setDefaultProperty 'minecraft_username', true, 'Developer'
-setDefaultProperty 'extra_jvm_args', false, ''
+
 
 version = propertyString('mod_version')
 group = propertyString('root_package')
