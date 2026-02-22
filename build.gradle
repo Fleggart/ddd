@@ -62,6 +62,6 @@ dependencies {
     minecraft 'net.minecraftforge:forge:1.12.2-14.23.5.2860'
     implementation files('libs/Crossbows-Backport-1.12.2-1.1.1.jar')
 }
-
+apply from: 'gradle/scripts/helpers.gradle'
 apply from: 'gradle/scripts/dependencies.gradle'
 
