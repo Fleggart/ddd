@@ -12,12 +12,6 @@ java {
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(21))
     }
-    if (propertyBool('generate_sources_jar')) {
-        withSourcesJar()
-    }
-    if (propertyBool('generate_javadocs_jar')) {
-        withJavadocJar()
-    }
 }
 
 configurations {
