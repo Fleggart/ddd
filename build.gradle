@@ -36,16 +36,18 @@ unimined.minecraft {
         loader "0.3.31-alpha"
     }
 
-    defaultRemapJar = false
-
     
-        remap(tasks.jar) {
-            mixinRemap {
-                enableBaseMixin()
-                enableMixinExtra()
-                disableRefmap()
-            }
-        }
+    
+        // 删除整个 if-else，直接这样写：
+    defaultRemapJar = false
+    remap(tasks.jar) {
+    mixinRemap {
+        enableBaseMixin()
+        enableMixinExtra()
+        // 不要禁用 refmap！
+        // disableRefmap()  ← 把这行删掉或注释掉
+    }
+}
 
     mods {
         remap(configurations.modCompileOnly)
