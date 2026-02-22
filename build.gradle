@@ -38,9 +38,10 @@ unimined.minecraft {
     
     // 声明你自己的模组
     mods {
-        main  // 关键：添加这一行！
-        remap(configurations.modCompileOnly)
-        remap(configurations.modRuntimeOnly)
+    // 正确引用 main 源代码集的方式
+    remap(sourceSets.main)
+    remap(configurations.modCompileOnly)
+    remap(configurations.modRuntimeOnly)
     }
 
     remap(tasks.jar) {
