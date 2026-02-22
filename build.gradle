@@ -27,27 +27,21 @@ configurations {
 
 unimined.minecraft {
     version "1.12.2"
-
     mappings {
         mcp("stable", "39-1.12")
     }
-
     cleanroom {
         loader "0.3.31-alpha"
     }
 
-    
-    
-        // 删除整个 if-else，直接这样写：
-    defaultRemapJar = false
-    remap(tasks.jar) {
-    mixinRemap {
-        enableBaseMixin()
-        enableMixinExtra()
-        // 不要禁用 refmap！
-        // disableRefmap()  ← 把这行删掉或注释掉
+    defaultRemapJar = false  // ← 缩进正确
+
+    remap(tasks.jar) {        // ← 缩进正确
+        mixinRemap {
+            enableBaseMixin()
+            enableMixinExtra()
+        }
     }
-}
 
     mods {
         remap(configurations.modCompileOnly)
