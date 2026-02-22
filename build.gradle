@@ -8,12 +8,6 @@ plugins {
 }
 
 // Early Assertions
-
-base {
-    archivesName.set(propertyString('mod_id'))
-}
-
-
 java {
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(21))
