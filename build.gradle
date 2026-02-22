@@ -203,12 +203,3 @@ jar {
         finalizedBy(tasks.named("remapJar"))
     }
 }
-
-
-shadowJar {
-    configurations = [project.configurations.shadow]
-    archiveClassifier = "shadow"
-}
-
-apply from: 'gradle/scripts/publishing.gradle'
-apply from: 'gradle/scripts/extra.gradle'
