@@ -40,7 +40,7 @@ unimined.minecraft {
     defaultRemapJar = false
 
     
-        remap(tasks.shadowJar) {
+        remap(tasks.jar) {
             mixinRemap {
                 enableBaseMixin()
                 enableMixinExtra()
