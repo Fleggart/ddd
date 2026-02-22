@@ -165,8 +165,3 @@ sourceSets {
         }
     }
 }
-
-if (!propertyBool('enable_shadow')) {
-    shadowJar.enabled = false
-}
-
