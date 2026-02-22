@@ -27,27 +27,33 @@ configurations {
 
 unimined.minecraft {
     version "1.12.2"
+
     mappings {
         mcp("stable", "39-1.12")
     }
+
     cleanroom {
         loader "0.3.31-alpha"
+        // runs.auth.username 可以写死，或者从项目属性读取，但为求简洁可以先写死
+        runs.auth.username = "Developer"
     }
 
     defaultRemapJar = false
-    
-    // 声明你自己的模组
+
+    // mods 块：只负责处理你依赖的其他模组
     mods {
-    // 正确引用 main 源代码集的方式
-    remap(sourceSets.main)
-    remap(configurations.modCompileOnly)
-    remap(configurations.modRuntimeOnly)
+        // 如果你有通过 modCompileOnly 或 modRuntimeOnly 添加的模组依赖，就保留下面两行
+        remap(configurations.modCompileOnly)
+        remap(configurations.modRuntimeOnly)
+        // 如果没有，整个 mods 块都可以注释掉
     }
 
+    // remap 任务：专门负责处理你自己的代码 (sourceSets.main)
     remap(tasks.jar) {
         mixinRemap {
             enableBaseMixin()
             enableMixinExtra()
+            // 不要禁用 refmap！
         }
     }
 }
