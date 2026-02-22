@@ -39,7 +39,7 @@ unimined.minecraft {
 
     defaultRemapJar = false
 
-    if (propertyBool('enable_shadow')) {
+    
         remap(tasks.shadowJar) {
             mixinRemap {
                 enableBaseMixin()
@@ -47,7 +47,7 @@ unimined.minecraft {
                 disableRefmap()
             }
         }
-    } else {
+     else {
         remap(tasks.jar) {
             mixinRemap {
                 enableBaseMixin()
