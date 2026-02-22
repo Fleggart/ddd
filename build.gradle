@@ -34,7 +34,6 @@ unimined.minecraft {
 
     cleanroom {
         loader "0.3.31-alpha"
-        runs.auth.username = minecraft_username
     }
 
     defaultRemapJar = false
@@ -47,15 +46,6 @@ unimined.minecraft {
                 disableRefmap()
             }
         }
-     else {
-        remap(tasks.jar) {
-            mixinRemap {
-                enableBaseMixin()
-                enableMixinExtra()
-                disableRefmap()
-            }
-        }
-    }
 
     mods {
         remap(configurations.modCompileOnly)
