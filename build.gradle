@@ -9,10 +9,6 @@ plugins {
 
 // Early Assertions
 
-
-version = propertyString('mod_version')
-group = propertyString('root_package')
-
 base {
     archivesName.set(propertyString('mod_id'))
 }
