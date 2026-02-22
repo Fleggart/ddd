@@ -8,9 +8,6 @@ plugins {
 }
 
 // Early Assertions
-assertProperty 'mod_id'
-assertProperty 'mod_name'
-
 assertSubProperties 'use_access_transformer', 'access_transformer_locations'
 assertSubProperties 'is_coremod', 'coremod_includes_mod', 'coremod_plugin_class_name'
 assertSubProperties 'use_asset_mover', 'asset_mover_version'
