@@ -210,10 +210,5 @@ shadowJar {
     archiveClassifier = "shadow"
 }
 
-
-compileTestJava {
-    sourceCompatibility = targetCompatibility = JavaVersion.VERSION_21
-}
-
 apply from: 'gradle/scripts/publishing.gradle'
 apply from: 'gradle/scripts/extra.gradle'
