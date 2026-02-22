@@ -8,8 +8,6 @@ plugins {
 }
 
 // Early Assertions
-
-
 setDefaultProperty 'generate_sources_jar', true, false
 setDefaultProperty 'generate_javadocs_jar', true, false
 setDefaultProperty 'minecraft_username', true, 'Developer'
