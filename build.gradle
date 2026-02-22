@@ -113,9 +113,6 @@ unimined.minecraft {
 dependencies {
     minecraft 'net.minecraftforge:forge:1.12.2-14.23.5.2860'
     implementation files('libs/Crossbows-Backport-1.12.2-1.1.1.jar')
-    if (propertyBool('use_asset_mover')) {
-        implementation "com.cleanroommc:assetmover:${propertyString('asset_mover_version')}"
-    }
 }
 
 apply from: 'gradle/scripts/dependencies.gradle'
