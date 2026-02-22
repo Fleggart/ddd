@@ -1,5 +1,3 @@
-apply from: 'gradle/scripts/helpers.gradle'
-
 repositories {
     // Other repositories described by default:
     // CleanroomMC: https://maven.cleanroommc.com
