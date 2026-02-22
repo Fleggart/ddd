@@ -152,16 +152,3 @@ processResources {
 
     rename '(.+_at.cfg)', 'META-INF/$1'
 }
-
-sourceSets {
-    main {
-        blossom {
-            javaSources {
-                property('mod_id', propertyString('mod_id'))
-                property('mod_name', propertyString('mod_name'))
-                property('mod_version', propertyString('mod_version'))
-                property('package', "${root_package}.${mod_id}")
-            }
-        }
-    }
-}
