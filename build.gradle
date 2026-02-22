@@ -34,14 +34,16 @@ unimined.minecraft {
         loader "0.3.31-alpha"
     }
 
-    defaultRemapJar = false  // ← 缩进正确
+    defaultRemapJar = false
 
-    remap(tasks.jar) {        // ← 缩进正确
-        mixinRemap {
-            enableBaseMixin()
-            enableMixinExtra()
-        }
+remap(tasks.jar) {
+    inputFile.set(tasks.jar.flatMap { it.archiveFile })
+    outputFile.set(layout.buildDirectory.file("libs/${project.name}-${project.version}-remapped.jar"))
+    mixinRemap {
+        enableBaseMixin()
+        enableMixinExtra()
     }
+}
 
     mods {
         remap(configurations.modCompileOnly)
