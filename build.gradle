@@ -111,7 +111,7 @@ unimined.minecraft {
 }
 
 dependencies {
-    compile files('libs/Crossbows-Backport-1.12.2-1.1.1.jar')
+    implementation files('libs/Crossbows-Backport-1.12.2-1.1.1.jar')
     if (propertyBool('use_asset_mover')) {
         implementation "com.cleanroommc:assetmover:${propertyString('asset_mover_version')}"
     }
